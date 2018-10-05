@@ -1,6 +1,17 @@
+sudo: required
+services:
+  - docker
+
 language: java
 jdk: oraclejdk8
 
-script:
+branches:
+  only:
+    - master
 
-    mvn clean verify -f alma-server/pom.xml -e
+before_install:
+  - docker version
+  - docker info
+
+script:
+  - mvn clean verify -f alma-server/pom.xml -e
